@@ -1,0 +1,25 @@
+/**
+ * style.css — tambahan di luar utilitas Tailwind
+ * (gradient halaman + pola grid halus agar tampilan lebih “matang”)
+ */
+
+.page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(99, 102, 241, 0.35), transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, rgba(139, 92, 246, 0.28), transparent 50%),
+    linear-gradient(165deg, #f8fafc 0%, #eef2ff 45%, #f5f3ff 100%);
+}
+
+.page-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 100%);
+  pointer-events: none;
+}
