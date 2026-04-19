@@ -11,8 +11,8 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/+esm";
 
 // ─── Konfigurasi: isi dari Dashboard Supabase → Settings → API ─────────────
-const SUPABASE_URL = "https://YOUR_PROJECT_REF.supabase.co";
-const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_PUBLIC_KEY";
+const SUPABASE_URL = "https://yqosdlshvmxuvzhtldiu.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_5PYYGfbxvEx14N2lE5KStw_bc65PMc0";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
