@@ -3,122 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login — Tugas FSD</title>
-    <!-- Tailwind CSS lewat CDN: tanpa build step, cocok untuk tugas kuliah -->
+    <title>Login Supabase</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ["DM Sans", "system-ui", "sans-serif"],
-            },
-            boxShadow: {
-              card: "0 25px 50px -12px rgba(15, 23, 42, 0.35)",
-            },
-          },
-        },
-      };
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
   </head>
-  <body
-    class="min-h-screen font-sans text-slate-800 antialiased selection:bg-indigo-500/30"
-  >
-    <!-- Lapisan dekoratif (gradient + grid) diatur di style.css -->
-    <div class="page-bg" aria-hidden="true"></div>
+  <body class="min-h-screen bg-slate-100 flex items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-xl bg-white p-6 shadow-lg">
+      <h1 class="text-2xl font-bold text-center text-slate-800 mb-6">Login</h1>
 
-    <main class="relative z-10 flex min-h-screen items-center justify-center px-4 py-12">
-      <div
-        class="w-full max-w-md rounded-2xl border border-white/40 bg-white/80 p-8 shadow-card backdrop-blur-md sm:p-10"
-      >
-        <header class="mb-8 text-center">
-          <div
-            class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-lg font-bold text-white shadow-lg shadow-indigo-500/30"
-          >
-            FSD
-          </div>
-          <h1 class="text-2xl font-semibold tracking-tight text-slate-900">
-            Masuk ke akun
-          </h1>
-          <p class="mt-2 text-sm text-slate-600">
-            Gunakan email dan kata sandi yang terdaftar di Supabase Auth.
-          </p>
-        </header>
+      <form id="login-form" class="space-y-4">
+        <div>
+          <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="nama@email.com"
+            class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
 
-        <!-- Pesan kesalahan / sukses dari script.js -->
-        <div
-          id="alert"
-          role="alert"
-          class="mb-4 hidden rounded-xl border px-4 py-3 text-sm"
-          aria-live="polite"
-        ></div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-slate-700 mb-1">Password</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Masukkan password"
+            class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
 
-        <form id="login-form" class="space-y-5" novalidate>
-          <div>
-            <label for="email" class="mb-1.5 block text-sm font-medium text-slate-700">
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              autocomplete="email"
-              required
-              placeholder="nama@email.com"
-              class="w-full rounded-xl border border-slate-200 bg-white/90 px-4 py-3 text-slate-900 outline-none ring-indigo-500/0 transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-500/15"
-            />
-          </div>
-
-          <div>
-            <div class="mb-1.5 flex items-center justify-between gap-2">
-              <label for="password" class="text-sm font-medium text-slate-700">
-                Kata sandi
-              </label>
-            </div>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autocomplete="current-password"
-              required
-              minlength="6"
-              placeholder="••••••••"
-              class="w-full rounded-xl border border-slate-200 bg-white/90 px-4 py-3 text-slate-900 outline-none ring-indigo-500/0 transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-500/15"
-            />
-          </div>
-
-          <button
-            id="submit-btn"
-            type="submit"
-            class="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            <span id="btn-label">Masuk</span>
-            <span id="btn-spinner" class="hidden h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" aria-hidden="true"></span>
-          </button>
-        </form>
-
-        <!-- Area setelah login berhasil (disembunyikan dulu) -->
-        <section id="logged-in" class="mt-8 hidden border-t border-slate-200/80 pt-6 text-center">
-          <p class="text-sm text-slate-600">Anda sudah masuk sebagai</p>
-          <p id="user-email" class="mt-1 font-medium text-slate-900"></p>
-          <button
-            id="logout-btn"
-            type="button"
-            class="mt-4 w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
-          >
-            Keluar
-          </button>
-        </section>
-
-      </div>
-    </main>
+        <button
+          type="submit"
+          class="w-full rounded-lg bg-indigo-600 py-2 font-semibold text-white hover:bg-indigo-700 transition"
+        >
+          Login
+        </button>
+      </form>
+    </div>
 
     <script type="module" src="script.js"></script>
   </body>
