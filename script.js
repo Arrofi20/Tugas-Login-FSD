@@ -12,7 +12,7 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 // ─── Konfigurasi: isi dari Dashboard Supabase → Settings → API ─────────────
 const SUPABASE_URL = "https://yqosdlshvmxuvzhtldiu.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_5PYYGfbxvEx14N2lE5KStw_bc65PMc0";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlxb3NkbHNodm14dXZ6aHRsZGl1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1Njk2MDIsImV4cCI6MjA5MjE0NTYwMn0.T6Hl4jvQ5itG_nUuiqA1lemdJu_6gregBh118VN6Mpg";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
