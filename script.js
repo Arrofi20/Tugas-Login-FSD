@@ -7,7 +7,7 @@
  * 3. Supabase memvalidasi kredensial; jika benar, session disimpan di browser.
  * 4. getSession() dipakai saat halaman dibuka untuk cek apakah user sudah login.
  */
-
+alert("Halo Rofi, JavaScript sudah aktif!");
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/+esm";
 
 // ─── Konfigurasi: isi dari Dashboard Supabase → Settings → API ─────────────
